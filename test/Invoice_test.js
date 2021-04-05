@@ -24,8 +24,7 @@ contract("Invoice contract", ([owner, user, receiver]) => {
       invoiceAddress = await Factory.computeAddress.call(
         userSalt,
         ERC20.address,
-        receiver,
-        depositAmount
+        receiver
       );
     });
 
@@ -42,7 +41,7 @@ contract("Invoice contract", ([owner, user, receiver]) => {
     it("Should withdraw funds to receiver", async () => {
       const prevReceiverBalance = await ERC20.balanceOf.call(receiver);
 
-      await Factory.withdraw(userSalt, ERC20.address, receiver, depositAmount, {
+      await Factory.withdraw(userSalt, ERC20.address, receiver, {
         from: owner,
       });
 
@@ -70,8 +69,7 @@ contract("Invoice contract", ([owner, user, receiver]) => {
       invoiceAddress = await Factory.computeAddress.call(
         userSalt,
         ERC20.address,
-        receiver,
-        depositAmount
+        receiver
       );
     });
 
@@ -88,7 +86,7 @@ contract("Invoice contract", ([owner, user, receiver]) => {
     it("Should withdraw funds to receiver", async () => {
       const prevReceiverBalance = await ERC20.balanceOf.call(receiver);
 
-      await Factory.withdraw(userSalt, ERC20.address, receiver, depositAmount, {
+      await Factory.withdraw(userSalt, ERC20.address, receiver, {
         from: owner,
       });
 
@@ -136,12 +134,7 @@ contract("Invoice contract", ([owner, user, receiver]) => {
     it("Should withdraw funds to receiver", async () => {
       for (invoice of invoices) {
         const prevReceiverBalance = await ERC20.balanceOf.call(receiver);
-        await Factory.withdraw(
-          invoice.id,
-          ERC20.address,
-          receiver,
-          depositAmount
-        );
+        await Factory.withdraw(invoice.id, ERC20.address, receiver);
         const invoiceBalance = await ERC20.balanceOf.call(invoiceAddress);
         const receiverBalance = await ERC20.balanceOf.call(receiver);
         assert.equal(invoiceBalance.toString(), "0");
