@@ -1,5 +1,5 @@
 {
-  "name": "depositwallet",
+  "name": "invoice",
   "version": "0.1.0",
   "description": "",
   "main": "truffle-config.js",

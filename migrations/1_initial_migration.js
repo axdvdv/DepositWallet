@@ -1,9 +1,5 @@
-const Migrations = artifacts.require("Migrations");
-const Token = artifacts.require("Token");
-const DepositWalletFactory = artifacts.require("DepositWalletFactory");
+const InvoiceFactory = artifacts.require("InvoiceFactory");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
-  deployer.deploy(DepositWalletFactory);
-  deployer.deploy(Token);
+  deployer.deploy(InvoiceFactory);
 };
